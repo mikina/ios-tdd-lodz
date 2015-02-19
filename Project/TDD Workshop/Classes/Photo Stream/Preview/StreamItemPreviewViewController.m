@@ -38,8 +38,13 @@
     StreamItemPreviewLayout *flowLayout = [StreamItemPreviewLayout new];
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero
                                                           collectionViewLayout:flowLayout];
-    collectionView.backgroundColor = [UIColor whiteColor];
+    [self setupCollectionView:collectionView];
     return collectionView;
+}
+
+- (void)setupCollectionView:(UICollectionView *)collectionView {
+    collectionView.pagingEnabled = YES;
+    collectionView.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - Actions
