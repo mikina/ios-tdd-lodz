@@ -45,30 +45,42 @@ describe(@"StreamItemPreviewViewController", ^{
             expect(streamItemPreviewLayout.scrollDirection).to.equal(UICollectionViewScrollDirectionHorizontal);
         });
 
-        it(@"should collection view have data source set to view controller", ^{
+        it(@"should have data source set", ^{
             expect(collectionView.dataSource).to.equal(streamItemPreviewViewController);
         });
 
     });
 
-    context(@"when create with stream items", ^{
-        __block NSArray *items;
+    describe(@"when created with items", ^{
+
+        __block NSArray *streamItems;
+        __block UICollectionView *collectionView;
 
         beforeEach(^{
-            items = @[[StreamItem new] ];
-            streamItemPreviewViewController = [[StreamItemPreviewViewController alloc] initWithStreamItems:items];
+            streamItems = @[ [StreamItem new], [StreamItem new], [StreamItem new] ];
+            streamItemPreviewViewController = [[StreamItemPreviewViewController alloc] initWithStreamItems:streamItems];
+            collectionView = (UICollectionView *) streamItemPreviewViewController.view;
         });
 
-        it(@"should set stream items", ^{
-            expect(streamItemPreviewViewController.streamItems).to.equal(items);
+        it(@"should return number of cells equal to provided list of items", ^{
+            expect([streamItemPreviewViewController collectionView:collectionView numberOfItemsInSection:0]).to.equal([streamItems count]);
         });
 
-        //TODO 1: Write test which checks numberOfItemsInSection method of UICollectionViewDataSource
+        it(@"should return cell for each stream item", ^{
+            for (int i = 0; i < [streamItems count]; ++i) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+                expect([streamItemPreviewViewController collectionView:collectionView cellForItemAtIndexPath:indexPath]).notTo.beNil();
+            }
+        });
 
-        //TODO 2: Write test which checks if for each item cell is created (method cellForItemAtIndexPath)
-
-        //TODO 3: Write test which check setup of the cell, title and image
-
+        it(@"should return cells with background image view with proper content mode", ^{
+            for (int i = 0; i < [streamItems count]; ++i) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+                UICollectionViewCell *cell = [streamItemPreviewViewController collectionView:collectionView cellForItemAtIndexPath:indexPath];
+                expect(cell.backgroundView).to.beKindOf([UIImageView class]);
+                expect(cell.backgroundView.contentMode).to.equal(UIViewContentModeScaleAspectFit);
+            }
+        });
     });
 
 });
