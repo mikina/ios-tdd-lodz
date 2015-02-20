@@ -12,20 +12,16 @@
 
 #pragma mark - Object life cycle
 
-- (instancetype)initWithStreamItem:(StreamItem *)streamItem {
-    self = [super init];
+- (id)initWithStreamItems:(NSArray *)streamItems {
+    self =  [super init];
     if (self) {
-        self.streamItem = streamItem;
-        self.title = self.streamItem.title;
+        self.streamItems = streamItems;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                                target:self
                                                                                                action:@selector(doneBarButtonPressed:)];
+
     }
     return self;
-}
-
-+ (instancetype)controllerWithStreamItem:(StreamItem *)streamItem {
-    return [[self alloc] initWithStreamItem:streamItem];
 }
 
 #pragma mark - View life cycle
@@ -45,6 +41,7 @@
 - (void)setupCollectionView:(UICollectionView *)collectionView {
     collectionView.pagingEnabled = YES;
     collectionView.backgroundColor = [UIColor whiteColor];
+    collectionView.dataSource = self;
 }
 
 #pragma mark - Actions
@@ -52,5 +49,14 @@
 - (void)doneBarButtonPressed:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
 
 @end
