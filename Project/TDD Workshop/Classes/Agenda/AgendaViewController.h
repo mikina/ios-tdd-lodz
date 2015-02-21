@@ -10,5 +10,4 @@
 @interface AgendaViewController : UITableViewController <UICollectionViewDelegate>
 
 @property(nonatomic, strong) AgendaProvider *agendaProvider;
-
 @end

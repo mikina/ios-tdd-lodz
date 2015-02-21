@@ -8,6 +8,11 @@
 
 @implementation FakeTableView
 
+- (void)reloadData
+{
+    self.reloadDataCalled = YES;
+}
+
 - (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier {
     self.registeredClass = cellClass;
     self.registeredIndentifier = identifier;

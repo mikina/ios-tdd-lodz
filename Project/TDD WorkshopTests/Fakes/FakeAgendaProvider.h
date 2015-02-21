@@ -17,4 +17,5 @@
 
 - (void)reloadAgendaWithCompletionHandler:(void (^)(void))completionHandler;
 
+- (void)simulateSuccessWithItems:(NSArray *)array;
 @end

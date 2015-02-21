@@ -5,7 +5,8 @@
         "startDate": 1398497400,
         "duration": 5400,
         "speakers": [
-            "Paweł Dudek"
+          "Łukasz Warchoł",
+          "Aleksander Zubala"
         ]
     },
     {
@@ -18,7 +19,7 @@
     {
         "title": "Red Green Refactor",
         "type": 3,
-        "startDate": 1398503700,
+        "startDate": 1398511800,
         "duration": 3600,
         "speakers": [
             "Aleksander Zubala"
@@ -34,7 +35,7 @@
     {
         "title": "Testing Techniques",
         "type": 3,
-        "startDate": 1398511800,
+        "startDate": 1398503700,
         "duration": 5400,
         "speakers": [
             "Łukasz Warchoł"
