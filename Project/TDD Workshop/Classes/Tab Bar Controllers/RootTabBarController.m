@@ -1,13 +1,11 @@
-/*
- * Copyright 2014 Taptera Inc. All rights reserved.
- */
-
-
 #import "RootTabBarController.h"
 #import "SpeakersViewController.h"
 #import "PhotoStreamViewController.h"
 #import "AgendaViewController.h"
 #import "PollViewController.h"
+#import "PollManager.h"
+#import "AgendaProvider.h"
+#import "ViewValidatorFactory.h"
 
 
 @implementation RootTabBarController
@@ -24,7 +22,9 @@
     AgendaViewController *agendaViewController = [AgendaViewController new];
     UINavigationController *agendaNavigationController = [[UINavigationController alloc] initWithRootViewController:agendaViewController];
 
-    PollViewController *pollController = [PollViewController new];
+    PollViewController *pollController = [[PollViewController alloc] initWithPollManager:[PollManager sharedInstance]
+                                                                          agendaProvider:[AgendaProvider new]
+                                                                        validatorFactory:[ViewValidatorFactory new]];
     UINavigationController *pollNavigationController = [[UINavigationController alloc] initWithRootViewController:pollController];
 
     self.viewControllers = @[speakersNavigationController, photoStreamNavigationController, agendaNavigationController, pollNavigationController];
